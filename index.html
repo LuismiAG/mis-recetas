@@ -23,18 +23,20 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
 
-    /* LOGIN */
+    /* ── PANTALLA DE LOGIN ── */
     .login-wrap { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 1rem; }
     .login-box { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem 2rem; width: 100%; max-width: 360px; text-align: center; }
     .login-logo { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--text); margin-bottom: 0.5rem; }
     .login-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 2rem; }
-    .login-box input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 15px; color: var(--text); text-align: center; letter-spacing: 0.1em; margin-bottom: 12px; }
-    .login-box input:focus { outline: none; border-color: var(--border-strong); }
-    .login-btn { width: 100%; padding: 10px; border-radius: var(--radius); background: var(--accent); color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; }
+    .login-field { margin-bottom: 12px; text-align: left; }
+    .login-field label { display: block; font-size: 12px; font-weight: 500; color: var(--text-muted); margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .login-field input { width: 100%; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text); }
+    .login-field input:focus { outline: none; border-color: var(--border-strong); }
+    .login-btn { width: 100%; padding: 10px; border-radius: var(--radius); background: var(--accent); color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; margin-top: 4px; }
     .login-btn:hover { opacity: 0.82; }
     .login-error { font-size: 13px; color: #a33030; margin-top: 10px; min-height: 18px; }
 
-    /* TOP BAR */
+    /* ── BARRA SUPERIOR ── */
     .topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 50; }
     .topbar-logo { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--text); }
     .topbar-right { display: flex; gap: 8px; align-items: center; }
@@ -42,14 +44,15 @@
     .topbar-nav button { padding: 6px 16px; border-radius: 999px; border: 1px solid transparent; background: transparent; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-muted); cursor: pointer; transition: all 0.15s; }
     .topbar-nav button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
     .topbar-nav button:hover:not(.active) { background: var(--bg); color: var(--text); border-color: var(--border); }
+    .topbar-user { font-size: 13px; color: var(--text-muted); }
     .btn-logout { padding: 5px 12px; border-radius: 999px; border: 1px solid var(--border); background: transparent; font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-muted); cursor: pointer; }
     .btn-logout:hover { border-color: var(--border-strong); color: var(--text); }
 
-    /* MAIN */
+    /* ── CONTENIDO PRINCIPAL ── */
     .main { max-width: 980px; margin: 0 auto; padding: 2rem 1.25rem; }
     .view { display: none; } .view.active { display: block; }
 
-    /* TOOLBAR */
+    /* ── BARRA DE HERRAMIENTAS ── */
     .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 1.25rem; flex-wrap: wrap; }
     .toolbar-left { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .search-wrap { position: relative; }
@@ -64,7 +67,7 @@
     .btn-add { padding: 8px 18px; border-radius: var(--radius); background: var(--accent); color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; white-space: nowrap; }
     .btn-add:hover { opacity: 0.82; }
 
-    /* GRID */
+    /* ── CUADRÍCULA DE RECETAS ── */
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 16px; }
     .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; cursor: pointer; transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s; }
     .card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); border-color: var(--border-strong); transform: translateY(-2px); }
@@ -82,7 +85,7 @@
     .empty-state .icon { font-size: 44px; margin-bottom: 1rem; }
     .loading { text-align: center; padding: 3rem; color: var(--text-muted); font-size: 14px; }
 
-    /* CALENDAR */
+    /* ── CALENDARIO ── */
     .cal-header { display: flex; align-items: center; gap: 14px; margin-bottom: 1.25rem; }
     .cal-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--text); min-width: 210px; }
     .cal-nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface); cursor: pointer; font-size: 18px; color: var(--text-muted); display: flex; align-items: center; justify-content: center; transition: all 0.12s; }
@@ -107,7 +110,7 @@
     .plan-comida   { background: var(--plan-comida-bg);   color: var(--plan-comida-fg); }
     .plan-cena     { background: var(--plan-cena-bg);     color: var(--plan-cena-fg); }
 
-    /* MODALS */
+    /* ── MODALES ── */
     .overlay { display: none; position: fixed; inset: 0; background: rgba(15,14,12,0.45); z-index: 200; align-items: center; justify-content: center; padding: 1rem; }
     .overlay.open { display: flex; }
     .modal { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; width: 100%; max-width: 500px; max-height: 92vh; overflow-y: auto; box-shadow: 0 8px 40px rgba(0,0,0,0.12); }
@@ -121,64 +124,30 @@
     .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--border-strong); }
     .field textarea { resize: vertical; min-height: 80px; line-height: 1.5; }
 
-    /* PHOTO UPLOAD AREA */
-    .photo-main-upload {
-      width: 100%; height: 160px; border: 1.5px dashed var(--border);
-      border-radius: var(--radius-lg); display: flex; align-items: center;
-      justify-content: center; cursor: pointer; overflow: hidden;
-      background: var(--bg); color: var(--text-hint); font-size: 13px;
-      position: relative; margin-bottom: 10px;
-    }
+    /* ── SUBIDA DE FOTOS ── */
+    .photo-main-upload { width: 100%; height: 160px; border: 1.5px dashed var(--border); border-radius: var(--radius-lg); display: flex; align-items: center; justify-content: center; cursor: pointer; overflow: hidden; background: var(--bg); color: var(--text-hint); font-size: 13px; position: relative; margin-bottom: 10px; }
     .photo-main-upload:hover { border-color: var(--border-strong); }
     .photo-main-upload img { width: 100%; height: 100%; object-fit: cover; }
     .photo-main-upload input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
     .upload-hint { display: flex; flex-direction: column; align-items: center; gap: 6px; pointer-events: none; }
     .upload-hint .u-icon { font-size: 28px; }
-
-    /* ADDITIONAL PHOTOS */
     .additional-photos-label { font-size: 12px; font-weight: 500; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; display: block; }
     .additional-photos-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
-    .add-photo-thumb {
-      width: 70px; height: 70px; border-radius: var(--radius);
-      overflow: hidden; position: relative; flex-shrink: 0;
-      border: 1px solid var(--border);
-    }
+    .add-photo-thumb { width: 70px; height: 70px; border-radius: var(--radius); overflow: hidden; position: relative; flex-shrink: 0; border: 1px solid var(--border); }
     .add-photo-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .add-photo-del {
-      position: absolute; top: 2px; right: 2px; width: 18px; height: 18px;
-      border-radius: 50%; background: rgba(0,0,0,0.55); border: none;
-      color: #fff; font-size: 11px; cursor: pointer; display: flex;
-      align-items: center; justify-content: center; line-height: 1;
-    }
-    .add-photo-btn {
-      width: 70px; height: 70px; border-radius: var(--radius);
-      border: 1.5px dashed var(--border); background: var(--bg);
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; cursor: pointer; color: var(--text-hint);
-      font-size: 11px; gap: 4px; position: relative; flex-shrink: 0;
-      transition: border-color 0.12s;
-    }
+    .add-photo-del { position: absolute; top: 2px; right: 2px; width: 18px; height: 18px; border-radius: 50%; background: rgba(0,0,0,0.55); border: none; color: #fff; font-size: 11px; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+    .add-photo-btn { width: 70px; height: 70px; border-radius: var(--radius); border: 1.5px dashed var(--border); background: var(--bg); display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: var(--text-hint); font-size: 11px; gap: 4px; position: relative; flex-shrink: 0; }
     .add-photo-btn:hover { border-color: var(--border-strong); }
     .add-photo-btn .plus { font-size: 22px; line-height: 1; }
     .add-photo-btn input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
 
-    /* DETAIL PHOTOS */
-    .detail-main-img {
-      width: 100%; height: 230px; border-radius: var(--radius-lg);
-      overflow: hidden; background: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 52px; margin-bottom: 10px; cursor: pointer;
-    }
+    /* ── DETALLE DE FOTOS ── */
+    .detail-main-img { width: 100%; height: 230px; border-radius: var(--radius-lg); overflow: hidden; background: var(--bg); display: flex; align-items: center; justify-content: center; font-size: 52px; margin-bottom: 10px; cursor: pointer; }
     .detail-main-img img { width: 100%; height: 100%; object-fit: cover; }
     .detail-thumbs { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
-    .detail-thumb {
-      width: 60px; height: 60px; border-radius: var(--radius);
-      overflow: hidden; border: 2px solid transparent; cursor: pointer;
-      flex-shrink: 0; transition: border-color 0.12s;
-    }
+    .detail-thumb { width: 60px; height: 60px; border-radius: var(--radius); overflow: hidden; border: 2px solid transparent; cursor: pointer; flex-shrink: 0; transition: border-color 0.12s; }
     .detail-thumb.active { border-color: var(--accent); }
     .detail-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-
     .detail-sec { margin-bottom: 1rem; }
     .detail-sec h3 { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 5px; }
     .detail-sec p { font-size: 14px; color: var(--text); line-height: 1.65; white-space: pre-wrap; }
@@ -191,7 +160,7 @@
     .btn-danger { padding: 9px 18px; border-radius: var(--radius); border: 1px solid #f0a0a0; background: transparent; color: #a33030; font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; }
     .btn-danger:hover { background: #fdf0f0; }
 
-    /* PICKER */
+    /* ── SELECTOR DE RECETAS (planning) ── */
     .picker-scroll { max-height: 300px; overflow-y: auto; margin-top: 8px; }
     .picker-item { display: flex; align-items: center; gap: 12px; padding: 9px 10px; border-radius: var(--radius); cursor: pointer; border: 1px solid transparent; transition: all 0.12s; margin-bottom: 5px; }
     .picker-item:hover { background: var(--bg); border-color: var(--border); }
@@ -201,14 +170,16 @@
     .picker-name { font-size: 14px; font-weight: 500; color: var(--text); }
     .picker-cat { font-size: 12px; color: var(--text-muted); margin-top: 1px; }
 
-    /* LIGHTBOX */
+    /* ── VISOR DE FOTO A PANTALLA COMPLETA ── */
     .lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.9); z-index: 500; align-items: center; justify-content: center; }
     .lightbox.open { display: flex; }
     .lightbox img { max-width: 95vw; max-height: 95vh; object-fit: contain; border-radius: var(--radius); }
     .lightbox-close { position: absolute; top: 16px; right: 20px; background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; }
 
+    /* ── RESPONSIVE MÓVIL ── */
     @media (max-width: 600px) {
       .topbar { padding: 0 1rem; }
+      .topbar-user { display: none; }
       .main { padding: 1.25rem 0.75rem; }
       .search-wrap input { width: 160px; }
       .cal-legend { display: none; }
@@ -221,135 +192,186 @@
 </head>
 <body>
 
-<!-- LOGIN -->
-<div id="login-screen" class="login-wrap">
+<!-- ── PANTALLA DE LOGIN ── -->
+<div id="pantalla-login" class="login-wrap">
   <div class="login-box">
     <div class="login-logo">mis recetas</div>
-    <div class="login-sub">Introduce la contraseña para acceder</div>
-    <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
-    <button class="login-btn" onclick="checkPwd()">Entrar</button>
+    <div class="login-sub">Inicia sesión para acceder</div>
+    <div class="login-field">
+      <label>Correo electrónico</label>
+      <input type="email" id="login-email" placeholder="tu@email.com" onkeydown="if(event.key==='Enter')iniciarSesion()">
+    </div>
+    <div class="login-field">
+      <label>Contraseña</label>
+      <input type="password" id="login-pwd" placeholder="••••••••" onkeydown="if(event.key==='Enter')iniciarSesion()">
+    </div>
+    <button class="login-btn" onclick="iniciarSesion()">Entrar</button>
     <div class="login-error" id="login-error"></div>
   </div>
 </div>
 
-<!-- APP -->
-<div id="app-screen" style="display:none">
+<!-- ── APLICACIÓN PRINCIPAL ── -->
+<div id="pantalla-app" style="display:none">
   <div class="topbar">
     <span class="topbar-logo">mis recetas</span>
     <div class="topbar-right">
       <nav class="topbar-nav">
-        <button class="active" onclick="showView('recipes')">Recetas</button>
-        <button onclick="showView('planner')">Planning</button>
+        <button class="active" onclick="mostrarVista('recetas')">Recetas</button>
+        <button onclick="mostrarVista('planning')">Planning</button>
       </nav>
-      <button class="btn-logout" onclick="logout()">Salir</button>
+      <span class="topbar-user" id="usuario-nombre"></span>
+      <button class="btn-logout" onclick="cerrarSesion()">Salir</button>
     </div>
   </div>
+
   <main class="main">
-    <div class="view active" id="view-recipes">
+
+    <!-- Vista recetas -->
+    <div class="view active" id="vista-recetas">
       <div class="toolbar">
         <div class="toolbar-left">
           <div class="search-wrap">
             <span class="search-icon">⌕</span>
-            <input type="text" id="search-input" placeholder="Buscar receta..." oninput="renderRecipes()">
+            <input type="text" id="buscador" placeholder="Buscar receta..." oninput="renderizarRecetas()">
           </div>
           <div class="cat-tabs">
-            <button class="cat-tab active" onclick="setCat('todas')">Todas</button>
-            <button class="cat-tab" onclick="setCat('desayuno')">Desayunos</button>
-            <button class="cat-tab" onclick="setCat('comida')">Comidas</button>
-            <button class="cat-tab" onclick="setCat('cena')">Cenas</button>
+            <button class="cat-tab active" onclick="filtrarCategoria('todas')">Todas</button>
+            <button class="cat-tab" onclick="filtrarCategoria('desayuno')">Desayunos</button>
+            <button class="cat-tab" onclick="filtrarCategoria('comida')">Comidas</button>
+            <button class="cat-tab" onclick="filtrarCategoria('cena')">Cenas</button>
           </div>
         </div>
-        <button class="btn-add" onclick="openAddModal()">+ Añadir receta</button>
+        <button class="btn-add" onclick="abrirModalNuevaReceta()">+ Añadir receta</button>
       </div>
-      <div class="grid" id="recipe-grid"></div>
-      <div class="loading" id="recipes-loading">Cargando recetas...</div>
-      <div class="empty-state" id="recipes-empty" style="display:none">
+      <div class="grid" id="cuadricula-recetas"></div>
+      <div class="loading" id="cargando-recetas">Cargando recetas...</div>
+      <div class="empty-state" id="sin-recetas" style="display:none">
         <div class="icon">🍽</div>
         <p>Aún no hay recetas aquí.<br>¡Añade la primera!</p>
       </div>
     </div>
-    <div class="view" id="view-planner">
+
+    <!-- Vista planning -->
+    <div class="view" id="vista-planning">
       <div class="cal-header">
-        <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
-        <div class="cal-title" id="cal-title"></div>
-        <button class="cal-nav" onclick="changeMonth(1)">›</button>
+        <button class="cal-nav" onclick="cambiarMes(-1)">‹</button>
+        <div class="cal-title" id="titulo-mes"></div>
+        <button class="cal-nav" onclick="cambiarMes(1)">›</button>
         <div class="cal-legend">
           <div class="legend-item"><div class="legend-dot" style="background:var(--plan-desayuno-fg)"></div>Desayuno</div>
           <div class="legend-item"><div class="legend-dot" style="background:var(--plan-comida-fg)"></div>Comida</div>
           <div class="legend-item"><div class="legend-dot" style="background:var(--plan-cena-fg)"></div>Cena</div>
         </div>
       </div>
-      <div class="cal-grid" id="cal-grid"></div>
+      <div class="cal-grid" id="cuadricula-calendario"></div>
     </div>
+
   </main>
 </div>
 
-<!-- ADD RECIPE MODAL -->
-<div class="overlay" id="modal-add">
+<!-- ── MODAL: AÑADIR RECETA ── -->
+<div class="overlay" id="modal-nueva-receta">
   <div class="modal">
-    <div class="modal-hd"><span class="modal-title">Nueva receta</span><button class="btn-close" onclick="closeModal('modal-add')">✕</button></div>
+    <div class="modal-hd">
+      <span class="modal-title">Nueva receta</span>
+      <button class="btn-close" onclick="cerrarModal('modal-nueva-receta')">✕</button>
+    </div>
     <div class="field">
       <label>Foto principal</label>
-      <div class="photo-main-upload" id="img-upload-box">
-        <div class="upload-hint" id="img-placeholder"><span class="u-icon">📷</span><span>Sube la foto principal</span></div>
-        <input type="file" accept="image/*" onchange="handleMainImg(event)" id="img-file">
+      <div class="photo-main-upload" id="zona-foto-principal">
+        <div class="upload-hint" id="texto-foto-principal">
+          <span class="u-icon">📷</span>
+          <span>Sube la foto principal</span>
+        </div>
+        <input type="file" accept="image/*" onchange="cargarFotoPrincipal(event)" id="input-foto-principal">
       </div>
       <span class="additional-photos-label">Fotos adicionales</span>
-      <div class="additional-photos-row" id="additional-photos-row">
-        <div class="add-photo-btn" id="add-more-btn">
+      <div class="additional-photos-row" id="fila-fotos-adicionales">
+        <div class="add-photo-btn" id="btn-mas-fotos">
           <span class="plus">+</span>
           <span>Añadir</span>
-          <input type="file" accept="image/*" multiple onchange="handleAdditionalImgs(event)">
+          <input type="file" accept="image/*" multiple onchange="cargarFotosAdicionales(event)">
         </div>
       </div>
     </div>
-    <div class="field"><label>Nombre de la receta</label><input type="text" id="in-name" placeholder="Ej: Tortilla española"></div>
-    <div class="field"><label>Categoría</label><select id="in-cat"><option value="desayuno">Desayuno / Merienda</option><option value="comida" selected>Comida</option><option value="cena">Cena</option></select></div>
-    <div class="field"><label>Ingredientes</label><textarea id="in-ing" placeholder="Ej: 3 patatas, 4 huevos, aceite de oliva..."></textarea></div>
-    <div class="field"><label>Notas / Preparación</label><textarea id="in-notes" placeholder="Pasos, tiempos, trucos..."></textarea></div>
-    <div class="modal-ft"><button class="btn-cancel" onclick="closeModal('modal-add')">Cancelar</button><button class="btn-save" onclick="saveRecipe()">Guardar receta</button></div>
+    <div class="field"><label>Nombre de la receta</label><input type="text" id="nombre-receta" placeholder="Ej: Tortilla española"></div>
+    <div class="field">
+      <label>Categoría</label>
+      <select id="categoria-receta">
+        <option value="desayuno">Desayuno / Merienda</option>
+        <option value="comida" selected>Comida</option>
+        <option value="cena">Cena</option>
+      </select>
+    </div>
+    <div class="field"><label>Ingredientes</label><textarea id="ingredientes-receta" placeholder="Ej: 3 patatas, 4 huevos, aceite de oliva..."></textarea></div>
+    <div class="field"><label>Notas / Preparación</label><textarea id="notas-receta" placeholder="Pasos, tiempos, trucos..."></textarea></div>
+    <div class="modal-ft">
+      <button class="btn-cancel" onclick="cerrarModal('modal-nueva-receta')">Cancelar</button>
+      <button class="btn-save" onclick="guardarReceta()">Guardar receta</button>
+    </div>
   </div>
 </div>
 
-<!-- RECIPE DETAIL MODAL -->
-<div class="overlay" id="modal-detail">
+<!-- ── MODAL: DETALLE DE RECETA ── -->
+<div class="overlay" id="modal-detalle-receta">
   <div class="modal">
-    <div class="modal-hd"><span class="modal-title" id="det-title"></span><button class="btn-close" onclick="closeModal('modal-detail')">✕</button></div>
-    <div class="detail-main-img" id="det-main-img" onclick="openLightbox()"></div>
-    <div class="detail-thumbs" id="det-thumbs"></div>
-    <div class="detail-sec"><h3>Categoría</h3><p id="det-cat"></p></div>
-    <div class="detail-sec" id="det-ing-sec"><h3>Ingredientes</h3><p id="det-ing"></p></div>
-    <div class="detail-sec" id="det-notes-sec"><h3>Notas / Preparación</h3><p id="det-notes"></p></div>
-    <div class="modal-ft"><button class="btn-danger" onclick="deleteRecipe()">Eliminar</button><button class="btn-cancel" onclick="closeModal('modal-detail')">Cerrar</button></div>
+    <div class="modal-hd">
+      <span class="modal-title" id="detalle-nombre"></span>
+      <button class="btn-close" onclick="cerrarModal('modal-detalle-receta')">✕</button>
+    </div>
+    <div class="detail-main-img" id="detalle-foto-principal" onclick="abrirLightbox()"></div>
+    <div class="detail-thumbs" id="detalle-miniaturas"></div>
+    <div class="detail-sec"><h3>Categoría</h3><p id="detalle-categoria"></p></div>
+    <div class="detail-sec" id="detalle-sec-ingredientes"><h3>Ingredientes</h3><p id="detalle-ingredientes"></p></div>
+    <div class="detail-sec" id="detalle-sec-notas"><h3>Notas / Preparación</h3><p id="detalle-notas"></p></div>
+    <div class="modal-ft">
+      <button class="btn-danger" onclick="eliminarReceta()">Eliminar</button>
+      <button class="btn-cancel" onclick="cerrarModal('modal-detalle-receta')">Cerrar</button>
+    </div>
   </div>
 </div>
 
-<!-- PLAN PICKER MODAL -->
-<div class="overlay" id="modal-plan">
+<!-- ── MODAL: AÑADIR AL PLANNING ── -->
+<div class="overlay" id="modal-planning">
   <div class="modal">
-    <div class="modal-hd"><span class="modal-title" id="plan-title">Añadir al planning</span><button class="btn-close" onclick="closeModal('modal-plan')">✕</button></div>
-    <div class="field"><label>Tipo de comida</label><select id="plan-meal-type"><option value="desayuno">Desayuno / Merienda</option><option value="comida" selected>Comida</option><option value="cena">Cena</option></select></div>
+    <div class="modal-hd">
+      <span class="modal-title" id="titulo-modal-planning">Añadir al planning</span>
+      <button class="btn-close" onclick="cerrarModal('modal-planning')">✕</button>
+    </div>
+    <div class="field">
+      <label>Tipo de comida</label>
+      <select id="tipo-comida-planning">
+        <option value="desayuno">Desayuno / Merienda</option>
+        <option value="comida" selected>Comida</option>
+        <option value="cena">Cena</option>
+      </select>
+    </div>
     <div class="field">
       <label>Receta</label>
-      <input type="text" id="plan-search" placeholder="Buscar receta..." oninput="renderPicker()" style="margin-bottom:8px">
-      <div class="picker-scroll" id="recipe-picker"></div>
+      <input type="text" id="buscador-planning" placeholder="Buscar receta..." oninput="renderizarSelectorRecetas()" style="margin-bottom:8px">
+      <div class="picker-scroll" id="selector-recetas"></div>
     </div>
-    <div class="modal-ft"><button class="btn-cancel" onclick="closeModal('modal-plan')">Cancelar</button><button class="btn-save" onclick="confirmPlan()">Añadir</button></div>
+    <div class="modal-ft">
+      <button class="btn-cancel" onclick="cerrarModal('modal-planning')">Cancelar</button>
+      <button class="btn-save" onclick="confirmarPlanning()">Añadir</button>
+    </div>
   </div>
 </div>
 
-<!-- LIGHTBOX -->
-<div class="lightbox" id="lightbox" onclick="closeLightbox()">
-  <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+<!-- ── VISOR FOTO A PANTALLA COMPLETA ── -->
+<div class="lightbox" id="lightbox" onclick="cerrarLightbox()">
+  <button class="lightbox-close" onclick="cerrarLightbox()">✕</button>
   <img id="lightbox-img" src="" alt="">
 </div>
 
+<!-- ── FIREBASE SDK ── -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { initializeApp }                                        from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
   import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
-  // ── CONFIGURACIÓN FIREBASE ──────────────────────────────────────────
-  const firebaseConfig = {
+  // ── CONFIGURACIÓN DE FIREBASE ──────────────────────────────────────
+  const configuracionFirebase = {
     apiKey: "AIzaSyAQRov1kfm8xItOho8tOhErTi9szv0UalY",
     authDomain: "mis-recetas-6467c.firebaseapp.com",
     projectId: "mis-recetas-6467c",
@@ -357,322 +379,391 @@
     messagingSenderId: "21913203261",
     appId: "1:21913203261:web:0e757f121f533e4b0eb054"
   };
+  // ──────────────────────────────────────────────────────────────────
 
-  // ── CONTRASEÑA COMPARTIDA ── Cámbiala por la que queráis ────────────
-  const APP_PASSWORD = "misrecetas2024";
-  // ───────────────────────────────────────────────────────────────────
+  const appFirebase = initializeApp(configuracionFirebase);
+  const auth        = getAuth(appFirebase);
+  const db          = getFirestore(appFirebase);
 
-  const app = initializeApp(firebaseConfig);
-  const db  = getFirestore(app);
+  // ── VARIABLES DE ESTADO ────────────────────────────────────────────
+  let recetas          = [];
+  let planning         = {};
+  let categoriaActual  = 'todas';
+  let fotoPortada      = null;
+  let fotosAdicionales = [];
+  let idRecetaSeleccionada    = null;
+  let idRecetaPlanning        = null;
+  let fotosDetalle            = [];
+  let indiceActivoDetalle     = 0;
+  let diaPlanning = null, mesPlanning = null, anioPlanning = null;
+  let mesCalendario  = new Date().getMonth();
+  let anioCalendario = new Date().getFullYear();
 
-  let recipes = [], planning = {}, curCat = 'todas';
-  let curMainImg = null, curAdditionalImgs = [];
-  let selId = null, selPickId = null;
-  let detailImgs = [], detailActiveIdx = 0;
-  let planDay = null, planMon = null, planYr = null;
-  let calMon = new Date().getMonth(), calYr = new Date().getFullYear();
+  // ── CONSTANTES ─────────────────────────────────────────────────────
+  const ETIQUETAS_CAT = { desayuno:'Desayuno / Merienda', comida:'Comida', cena:'Cena' };
+  const EMOJIS        = { desayuno:'☀️', comida:'🍽️', cena:'🌙' };
+  const MESES         = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+  const DIAS_SEMANA   = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
 
-  const CAT_LABEL = { desayuno:'Desayuno / Merienda', comida:'Comida', cena:'Cena' };
-  const EMO       = { desayuno:'☀️', comida:'🍽️', cena:'🌙' };
-  const MONTHS    = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
-  const WDAYS     = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+  // ── AUTENTICACIÓN ──────────────────────────────────────────────────
 
-  // LOGIN
-  window.checkPwd = () => {
-    const val = document.getElementById('pwd-input').value;
-    if (val === APP_PASSWORD) {
-      sessionStorage.setItem('auth','1');
-      document.getElementById('login-screen').style.display = 'none';
-      document.getElementById('app-screen').style.display   = 'block';
-      startListeners();
+  // Detecta si hay sesión activa al cargar la página
+  onAuthStateChanged(auth, usuario => {
+    if (usuario) {
+      document.getElementById('pantalla-login').style.display = 'none';
+      document.getElementById('pantalla-app').style.display   = 'block';
+      // Muestra el nombre de usuario (parte antes del @)
+      document.getElementById('usuario-nombre').textContent = usuario.email.split('@')[0];
+      iniciarEscuchas();
     } else {
-      document.getElementById('login-error').textContent = 'Contraseña incorrecta';
-      document.getElementById('pwd-input').value = '';
+      document.getElementById('pantalla-login').style.display = 'flex';
+      document.getElementById('pantalla-app').style.display   = 'none';
+    }
+  });
+
+  // Inicia sesión con email y contraseña
+  window.iniciarSesion = async () => {
+    const email = document.getElementById('login-email').value.trim();
+    const pwd   = document.getElementById('login-pwd').value;
+    const error = document.getElementById('login-error');
+    error.textContent = '';
+    try {
+      await signInWithEmailAndPassword(auth, email, pwd);
+    } catch (e) {
+      error.textContent = 'Correo o contraseña incorrectos';
     }
   };
-  window.logout = () => { sessionStorage.removeItem('auth'); location.reload(); };
 
-  if (sessionStorage.getItem('auth') === '1') {
-    document.getElementById('login-screen').style.display = 'none';
-    document.getElementById('app-screen').style.display   = 'block';
-    startListeners();
+  // Cierra la sesión
+  window.cerrarSesion = () => signOut(auth);
+
+  // ── ESCUCHAS EN TIEMPO REAL DE FIRESTORE ───────────────────────────
+  function iniciarEscuchas() {
+    // Escucha cambios en la colección de recetas
+    onSnapshot(collection(db, 'recetas'), snap => {
+      recetas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      recetas.sort((a, b) => (b.creadoEn || 0) - (a.creadoEn || 0));
+      document.getElementById('cargando-recetas').style.display = 'none';
+      renderizarRecetas();
+      renderizarSelectorRecetas();
+    });
+
+    // Escucha cambios en el documento de planning
+    onSnapshot(doc(db, 'planning', 'datos'), snap => {
+      planning = snap.exists() ? (snap.data() || {}) : {};
+      renderizarCalendario();
+    });
   }
 
-  function startListeners() {
-    onSnapshot(collection(db,'recipes'), snap => {
-      recipes = snap.docs.map(d => ({ id:d.id, ...d.data() }));
-      recipes.sort((a,b) => (b.createdAt||0)-(a.createdAt||0));
-      document.getElementById('recipes-loading').style.display = 'none';
-      renderRecipes(); renderPicker();
-    });
-    onSnapshot(doc(db,'planning','data'), snap => {
-      planning = snap.exists() ? (snap.data()||{}) : {};
-      renderCalendar();
-    });
-  }
-
-  window.showView = v => {
+  // ── NAVEGACIÓN ENTRE VISTAS ────────────────────────────────────────
+  window.mostrarVista = v => {
     document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
-    document.getElementById('view-'+v).classList.add('active');
-    document.querySelectorAll('.topbar-nav button').forEach((b,i) =>
-      b.classList.toggle('active', ['recipes','planner'][i]===v));
-    if (v==='planner') renderCalendar();
+    document.getElementById('vista-' + v).classList.add('active');
+    document.querySelectorAll('.topbar-nav button').forEach((b, i) =>
+      b.classList.toggle('active', ['recetas', 'planning'][i] === v));
+    if (v === 'planning') renderizarCalendario();
   };
 
-  window.setCat = c => {
-    curCat = c;
-    document.querySelectorAll('.cat-tab').forEach((t,i) =>
-      t.classList.toggle('active', ['todas','desayuno','comida','cena'][i]===c));
-    renderRecipes();
+  // ── FILTRADO DE RECETAS ────────────────────────────────────────────
+  window.filtrarCategoria = c => {
+    categoriaActual = c;
+    document.querySelectorAll('.cat-tab').forEach((t, i) =>
+      t.classList.toggle('active', ['todas', 'desayuno', 'comida', 'cena'][i] === c));
+    renderizarRecetas();
   };
 
-  function getFiltered() {
-    const q = (document.getElementById('search-input').value||'').toLowerCase();
-    return recipes.filter(r =>
-      (curCat==='todas'||r.cat===curCat) &&
-      (!q||r.name.toLowerCase().includes(q)||(r.ing||'').toLowerCase().includes(q)));
+  function obtenerRecetasFiltradas() {
+    const q = (document.getElementById('buscador').value || '').toLowerCase();
+    return recetas.filter(r =>
+      (categoriaActual === 'todas' || r.cat === categoriaActual) &&
+      (!q || r.nombre.toLowerCase().includes(q) || (r.ingredientes || '').toLowerCase().includes(q))
+    );
   }
 
-  function renderRecipes() {
-    const grid=document.getElementById('recipe-grid'), empty=document.getElementById('recipes-empty');
-    const list=getFiltered();
-    if (!list.length) { grid.innerHTML=''; empty.style.display='block'; return; }
-    empty.style.display='none';
-    const allImgs = r => [r.img, ...(r.imgs||[])].filter(Boolean);
-    grid.innerHTML=list.map(r=>{
-      const imgs = allImgs(r);
-      const thumb = imgs[0];
-      const count = imgs.length;
+  // ── RENDERIZADO DE LA CUADRÍCULA DE RECETAS ────────────────────────
+  function renderizarRecetas() {
+    const cuadricula = document.getElementById('cuadricula-recetas');
+    const sinRecetas = document.getElementById('sin-recetas');
+    const lista      = obtenerRecetasFiltradas();
+    if (!lista.length) { cuadricula.innerHTML = ''; sinRecetas.style.display = 'block'; return; }
+    sinRecetas.style.display = 'none';
+    const todasLasFotos = r => [r.foto, ...(r.fotos || [])].filter(Boolean);
+    cuadricula.innerHTML = lista.map(r => {
+      const fotos  = todasLasFotos(r);
+      const portada = fotos[0];
       return `
-      <div class="card" onclick="openDetail('${r.id}')">
-        <div class="card-thumb">
-          ${thumb ? `<img src="${thumb}" alt="">` : `<span>${EMO[r.cat]}</span>`}
-          ${count > 1 ? `<span class="card-photo-count">📷 ${count}</span>` : ''}
-        </div>
-        <div class="card-body">
-          <div class="card-name">${r.name}</div>
-          ${r.ing?`<div class="card-ing">${r.ing.slice(0,60)}${r.ing.length>60?'…':''}</div>`:''}
-          <span class="badge badge-${r.cat}">${CAT_LABEL[r.cat]}</span>
-        </div>
-      </div>`;
+        <div class="card" onclick="abrirDetalle('${r.id}')">
+          <div class="card-thumb">
+            ${portada ? `<img src="${portada}" alt="">` : `<span>${EMOJIS[r.cat]}</span>`}
+            ${fotos.length > 1 ? `<span class="card-photo-count">📷 ${fotos.length}</span>` : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-name">${r.nombre}</div>
+            ${r.ingredientes ? `<div class="card-ing">${r.ingredientes.slice(0, 60)}${r.ingredientes.length > 60 ? '…' : ''}</div>` : ''}
+            <span class="badge badge-${r.cat}">${ETIQUETAS_CAT[r.cat]}</span>
+          </div>
+        </div>`;
     }).join('');
   }
-  window.renderRecipes = renderRecipes;
+  window.renderizarRecetas = renderizarRecetas;
 
-  // ADD MODAL
-  window.openAddModal = () => {
-    curMainImg = null; curAdditionalImgs = [];
-    ['img-file','in-name','in-ing','in-notes'].forEach(id => document.getElementById(id).value='');
-    document.getElementById('in-cat').value = 'comida';
-    const box = document.getElementById('img-upload-box');
-    const ei = box.querySelector('img'); if (ei) ei.remove();
-    document.getElementById('img-placeholder').style.display = '';
-    renderAdditionalThumbs();
-    openModal('modal-add');
+  // ── MODAL: NUEVA RECETA ────────────────────────────────────────────
+  window.abrirModalNuevaReceta = () => {
+    fotoPortada = null; fotosAdicionales = [];
+    document.getElementById('input-foto-principal').value = '';
+    document.getElementById('nombre-receta').value        = '';
+    document.getElementById('categoria-receta').value     = 'comida';
+    document.getElementById('ingredientes-receta').value  = '';
+    document.getElementById('notas-receta').value         = '';
+    const zona = document.getElementById('zona-foto-principal');
+    const imgExistente = zona.querySelector('img'); if (imgExistente) imgExistente.remove();
+    document.getElementById('texto-foto-principal').style.display = '';
+    renderizarMiniaturasFotosAdicionales();
+    abrirModal('modal-nueva-receta');
   };
 
-  window.handleMainImg = e => {
-    const file = e.target.files[0]; if (!file) return;
-    readFile(file, data => {
-      curMainImg = data;
-      const box = document.getElementById('img-upload-box');
-      let img = box.querySelector('img');
-      if (!img) { img = document.createElement('img'); box.appendChild(img); }
-      img.src = data;
-      document.getElementById('img-placeholder').style.display = 'none';
+  // Carga la foto principal desde el dispositivo
+  window.cargarFotoPrincipal = e => {
+    const archivo = e.target.files[0]; if (!archivo) return;
+    leerArchivo(archivo, datos => {
+      fotoPortada = datos;
+      const zona = document.getElementById('zona-foto-principal');
+      let img = zona.querySelector('img');
+      if (!img) { img = document.createElement('img'); zona.appendChild(img); }
+      img.src = datos;
+      document.getElementById('texto-foto-principal').style.display = 'none';
     });
   };
 
-  window.handleAdditionalImgs = e => {
-    const files = Array.from(e.target.files);
-    let done = 0;
-    files.forEach(file => {
-      readFile(file, data => {
-        curAdditionalImgs.push(data);
-        done++;
-        if (done === files.length) renderAdditionalThumbs();
+  // Carga fotos adicionales desde el dispositivo
+  window.cargarFotosAdicionales = e => {
+    const archivos = Array.from(e.target.files);
+    let cargadas = 0;
+    archivos.forEach(archivo => {
+      leerArchivo(archivo, datos => {
+        fotosAdicionales.push(datos);
+        cargadas++;
+        if (cargadas === archivos.length) renderizarMiniaturasFotosAdicionales();
       });
     });
     e.target.value = '';
   };
 
-  function readFile(file, cb) {
+  // Convierte un archivo a base64
+  function leerArchivo(archivo, callback) {
     const fr = new FileReader();
-    fr.onload = ev => cb(ev.target.result);
-    fr.readAsDataURL(file);
+    fr.onload = ev => callback(ev.target.result);
+    fr.readAsDataURL(archivo);
   }
 
-  function renderAdditionalThumbs() {
-    const row = document.getElementById('additional-photos-row');
-    const btn = document.getElementById('add-more-btn');
-    // Remove existing thumbs
-    row.querySelectorAll('.add-photo-thumb').forEach(el => el.remove());
-    curAdditionalImgs.forEach((src, i) => {
-      const thumb = document.createElement('div');
-      thumb.className = 'add-photo-thumb';
-      thumb.innerHTML = `<img src="${src}" alt=""><button class="add-photo-del" onclick="removeAdditionalImg(${i})">✕</button>`;
-      row.insertBefore(thumb, btn);
+  // Actualiza las miniaturas de fotos adicionales en el formulario
+  function renderizarMiniaturasFotosAdicionales() {
+    const fila = document.getElementById('fila-fotos-adicionales');
+    const boton = document.getElementById('btn-mas-fotos');
+    fila.querySelectorAll('.add-photo-thumb').forEach(el => el.remove());
+    fotosAdicionales.forEach((src, i) => {
+      const miniatura = document.createElement('div');
+      miniatura.className = 'add-photo-thumb';
+      miniatura.innerHTML = `<img src="${src}" alt=""><button class="add-photo-del" onclick="eliminarFotoAdicional(${i})">✕</button>`;
+      fila.insertBefore(miniatura, boton);
     });
   }
 
-  window.removeAdditionalImg = i => {
-    curAdditionalImgs.splice(i, 1);
-    renderAdditionalThumbs();
+  // Elimina una foto adicional del formulario
+  window.eliminarFotoAdicional = i => {
+    fotosAdicionales.splice(i, 1);
+    renderizarMiniaturasFotosAdicionales();
   };
 
-  window.saveRecipe = async () => {
-    const name = document.getElementById('in-name').value.trim();
-    if (!name) { document.getElementById('in-name').focus(); return; }
-    await addDoc(collection(db,'recipes'), {
-      name, cat: document.getElementById('in-cat').value,
-      ing:   document.getElementById('in-ing').value.trim(),
-      notes: document.getElementById('in-notes').value.trim(),
-      img:   curMainImg || null,
-      imgs:  curAdditionalImgs,
-      createdAt: Date.now()
+  // Guarda la receta en Firestore
+  window.guardarReceta = async () => {
+    const nombre = document.getElementById('nombre-receta').value.trim();
+    if (!nombre) { document.getElementById('nombre-receta').focus(); return; }
+    await addDoc(collection(db, 'recetas'), {
+      nombre,
+      cat:          document.getElementById('categoria-receta').value,
+      ingredientes: document.getElementById('ingredientes-receta').value.trim(),
+      notas:        document.getElementById('notas-receta').value.trim(),
+      foto:         fotoPortada || null,
+      fotos:        fotosAdicionales,
+      creadoEn:     Date.now()
     });
-    closeModal('modal-add');
+    cerrarModal('modal-nueva-receta');
   };
 
-  // DETAIL
-  window.openDetail = id => {
-    const r = recipes.find(x => x.id===id); if (!r) return;
-    selId = id;
-    detailImgs = [r.img, ...(r.imgs||[])].filter(Boolean);
-    detailActiveIdx = 0;
-    document.getElementById('det-title').textContent = r.name;
-    document.getElementById('det-cat').textContent   = CAT_LABEL[r.cat];
-    const is = document.getElementById('det-ing-sec'); is.style.display = r.ing?'':'none';
-    document.getElementById('det-ing').textContent   = r.ing||'';
-    const ns = document.getElementById('det-notes-sec'); ns.style.display = r.notes?'':'none';
-    document.getElementById('det-notes').textContent = r.notes||'';
-    renderDetailPhotos();
-    openModal('modal-detail');
+  // ── MODAL: DETALLE DE RECETA ───────────────────────────────────────
+  window.abrirDetalle = id => {
+    const r = recetas.find(x => x.id === id); if (!r) return;
+    idRecetaSeleccionada = id;
+    fotosDetalle         = [r.foto, ...(r.fotos || [])].filter(Boolean);
+    indiceActivoDetalle  = 0;
+    document.getElementById('detalle-nombre').textContent    = r.nombre;
+    document.getElementById('detalle-categoria').textContent = ETIQUETAS_CAT[r.cat];
+    const secIng = document.getElementById('detalle-sec-ingredientes');
+    secIng.style.display = r.ingredientes ? '' : 'none';
+    document.getElementById('detalle-ingredientes').textContent = r.ingredientes || '';
+    const secNotas = document.getElementById('detalle-sec-notas');
+    secNotas.style.display = r.notas ? '' : 'none';
+    document.getElementById('detalle-notas').textContent = r.notas || '';
+    renderizarFotosDetalle();
+    abrirModal('modal-detalle-receta');
   };
 
-  function renderDetailPhotos() {
-    const mainEl = document.getElementById('det-main-img');
-    const thumbsEl = document.getElementById('det-thumbs');
-    if (!detailImgs.length) {
-      mainEl.innerHTML = `<span>${EMO['comida']}</span>`;
-      thumbsEl.innerHTML = '';
+  // Renderiza la foto principal y las miniaturas en el detalle
+  function renderizarFotosDetalle() {
+    const fotoPrincipal = document.getElementById('detalle-foto-principal');
+    const miniaturas    = document.getElementById('detalle-miniaturas');
+    if (!fotosDetalle.length) {
+      fotoPrincipal.innerHTML = `<span>${EMOJIS['comida']}</span>`;
+      miniaturas.innerHTML = '';
       return;
     }
-    const active = detailImgs[detailActiveIdx];
-    mainEl.innerHTML = `<img src="${active}" alt="">`;
-    if (detailImgs.length > 1) {
-      thumbsEl.innerHTML = detailImgs.map((src, i) =>
-        `<div class="detail-thumb ${i===detailActiveIdx?'active':''}" onclick="setDetailPhoto(${i})">
-           <img src="${src}" alt="">
-         </div>`).join('');
-    } else {
-      thumbsEl.innerHTML = '';
-    }
+    fotoPrincipal.innerHTML = `<img src="${fotosDetalle[indiceActivoDetalle]}" alt="">`;
+    miniaturas.innerHTML = fotosDetalle.length > 1
+      ? fotosDetalle.map((src, i) =>
+          `<div class="detail-thumb ${i === indiceActivoDetalle ? 'active' : ''}" onclick="cambiarFotoDetalle(${i})">
+             <img src="${src}" alt="">
+           </div>`).join('')
+      : '';
   }
 
-  window.setDetailPhoto = i => {
-    detailActiveIdx = i;
-    renderDetailPhotos();
+  // Cambia la foto activa en el detalle
+  window.cambiarFotoDetalle = i => {
+    indiceActivoDetalle = i;
+    renderizarFotosDetalle();
   };
 
-  window.openLightbox = () => {
-    if (!detailImgs.length) return;
-    document.getElementById('lightbox-img').src = detailImgs[detailActiveIdx];
+  // Abre la foto a pantalla completa
+  window.abrirLightbox = () => {
+    if (!fotosDetalle.length) return;
+    document.getElementById('lightbox-img').src = fotosDetalle[indiceActivoDetalle];
     document.getElementById('lightbox').classList.add('open');
   };
-  window.closeLightbox = () => document.getElementById('lightbox').classList.remove('open');
+  window.cerrarLightbox = () => document.getElementById('lightbox').classList.remove('open');
 
-  window.deleteRecipe = async () => {
-    if (!selId||!confirm('¿Eliminar esta receta?')) return;
-    await deleteDoc(doc(db,'recipes',selId));
-    closeModal('modal-detail');
+  // Elimina una receta de Firestore
+  window.eliminarReceta = async () => {
+    if (!idRecetaSeleccionada || !confirm('¿Eliminar esta receta?')) return;
+    await deleteDoc(doc(db, 'recetas', idRecetaSeleccionada));
+    cerrarModal('modal-detalle-receta');
   };
 
-  // CALENDAR
-  function planKey(y,m,d){ return `${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; }
+  // ── CALENDARIO ────────────────────────────────────────────────────
+  function claveDelDia(a, m, d) {
+    return `${a}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+  }
 
-  window.changeMonth = delta => {
-    calMon+=delta;
-    if(calMon>11){calMon=0;calYr++;}else if(calMon<0){calMon=11;calYr--;}
-    renderCalendar();
+  window.cambiarMes = delta => {
+    mesCalendario += delta;
+    if (mesCalendario > 11) { mesCalendario = 0; anioCalendario++; }
+    else if (mesCalendario < 0) { mesCalendario = 11; anioCalendario--; }
+    renderizarCalendario();
   };
 
-  function renderCalendar() {
-    document.getElementById('cal-title').textContent=`${MONTHS[calMon]} ${calYr}`;
-    const grid=document.getElementById('cal-grid'); grid.innerHTML='';
-    WDAYS.forEach(d=>{const el=document.createElement('div');el.className='cal-dayname';el.textContent=d;grid.appendChild(el);});
-    const firstDay=new Date(calYr,calMon,1).getDay();
-    const offset=firstDay===0?6:firstDay-1;
-    const daysInMonth=new Date(calYr,calMon+1,0).getDate();
-    const today=new Date();
-    for(let i=0;i<offset;i++){const c=document.createElement('div');c.className='cal-cell empty-cell';grid.appendChild(c);}
-    for(let d=1;d<=daysInMonth;d++){
-      const cell=document.createElement('div'); cell.className='cal-cell';
-      if(today.getFullYear()===calYr&&today.getMonth()===calMon&&today.getDate()===d) cell.classList.add('today');
-      const key=planKey(calYr,calMon,d);
-      const entries=planning[key]||[];
-      cell.innerHTML=`<span class="day-num">${d}</span><button class="cal-add-btn" onclick="openPlanModal(${d},${calMon},${calYr})">+</button>`;
-      entries.forEach((e,i)=>{
-        const item=document.createElement('div'); item.className=`plan-item plan-${e.cat}`;
-        item.innerHTML=`<span class="plan-name">${e.name}</span><button class="plan-del" onclick="removePlan('${key}',${i},event)">✕</button>`;
-        cell.appendChild(item);
+  function renderizarCalendario() {
+    document.getElementById('titulo-mes').textContent = `${MESES[mesCalendario]} ${anioCalendario}`;
+    const cuadricula  = document.getElementById('cuadricula-calendario');
+    cuadricula.innerHTML = '';
+
+    // Cabeceras de días de la semana
+    DIAS_SEMANA.forEach(d => {
+      const el = document.createElement('div'); el.className = 'cal-dayname'; el.textContent = d; cuadricula.appendChild(el);
+    });
+
+    const primerDia   = new Date(anioCalendario, mesCalendario, 1).getDay();
+    const desplazamiento = primerDia === 0 ? 6 : primerDia - 1;
+    const diasDelMes  = new Date(anioCalendario, mesCalendario + 1, 0).getDate();
+    const hoy         = new Date();
+
+    // Celdas vacías al inicio del mes
+    for (let i = 0; i < desplazamiento; i++) {
+      const c = document.createElement('div'); c.className = 'cal-cell empty-cell'; cuadricula.appendChild(c);
+    }
+
+    // Celdas de días
+    for (let d = 1; d <= diasDelMes; d++) {
+      const celda = document.createElement('div'); celda.className = 'cal-cell';
+      const esHoy = hoy.getFullYear() === anioCalendario && hoy.getMonth() === mesCalendario && hoy.getDate() === d;
+      if (esHoy) celda.classList.add('today');
+      const clave    = claveDelDia(anioCalendario, mesCalendario, d);
+      const entradas = planning[clave] || [];
+      celda.innerHTML = `<span class="day-num">${d}</span><button class="cal-add-btn" onclick="abrirModalPlanning(${d},${mesCalendario},${anioCalendario})">+</button>`;
+      entradas.forEach((e, i) => {
+        const item = document.createElement('div'); item.className = `plan-item plan-${e.cat}`;
+        item.innerHTML = `<span class="plan-name">${e.nombre}</span><button class="plan-del" onclick="eliminarEntradaPlanning('${clave}',${i},event)">✕</button>`;
+        celda.appendChild(item);
       });
-      grid.appendChild(cell);
+      cuadricula.appendChild(celda);
     }
   }
 
-  window.openPlanModal = (d,m,y) => {
-    planDay=d;planMon=m;planYr=y;selPickId=null;
-    document.getElementById('plan-title').textContent=`${d} de ${MONTHS[m]}`;
-    document.getElementById('plan-search').value='';
-    document.getElementById('plan-meal-type').value='comida';
-    renderPicker(); openModal('modal-plan');
+  // ── MODAL: PLANNING ───────────────────────────────────────────────
+  window.abrirModalPlanning = (d, m, a) => {
+    diaPlanning = d; mesPlanning = m; anioPlanning = a; idRecetaPlanning = null;
+    document.getElementById('titulo-modal-planning').textContent = `${d} de ${MESES[m]}`;
+    document.getElementById('buscador-planning').value = '';
+    document.getElementById('tipo-comida-planning').value = 'comida';
+    renderizarSelectorRecetas();
+    abrirModal('modal-planning');
   };
 
-  function renderPicker() {
-    const q=(document.getElementById('plan-search')?.value||'').toLowerCase();
-    const list=recipes.filter(r=>!q||r.name.toLowerCase().includes(q));
-    const el=document.getElementById('recipe-picker'); if(!el) return;
-    if(!list.length){el.innerHTML=`<div style="color:var(--text-muted);font-size:13px;padding:8px">${recipes.length?'Sin resultados':'Aún no tienes recetas'}</div>`;return;}
-    const allImgs = r => [r.img,...(r.imgs||[])].filter(Boolean);
-    el.innerHTML=list.map(r=>{
-      const thumb = allImgs(r)[0];
-      return `<div class="picker-item" id="pi-${r.id}" onclick="selectPicker('${r.id}')">
-        <div class="picker-thumb">${thumb?`<img src="${thumb}" alt="">`:`<span>${EMO[r.cat]}</span>`}</div>
-        <div><div class="picker-name">${r.name}</div><div class="picker-cat">${CAT_LABEL[r.cat]}</div></div>
-      </div>`;
+  // Renderiza el listado de recetas en el selector del planning
+  function renderizarSelectorRecetas() {
+    const q      = (document.getElementById('buscador-planning')?.value || '').toLowerCase();
+    const lista  = recetas.filter(r => !q || r.nombre.toLowerCase().includes(q));
+    const el     = document.getElementById('selector-recetas'); if (!el) return;
+    if (!lista.length) {
+      el.innerHTML = `<div style="color:var(--text-muted);font-size:13px;padding:8px">${recetas.length ? 'Sin resultados' : 'Aún no tienes recetas'}</div>`;
+      return;
+    }
+    const todasLasFotos = r => [r.foto, ...(r.fotos || [])].filter(Boolean);
+    el.innerHTML = lista.map(r => {
+      const portada = todasLasFotos(r)[0];
+      return `
+        <div class="picker-item" id="opcion-${r.id}" onclick="seleccionarRecetaPlanning('${r.id}')">
+          <div class="picker-thumb">${portada ? `<img src="${portada}" alt="">` : `<span>${EMOJIS[r.cat]}</span>`}</div>
+          <div><div class="picker-name">${r.nombre}</div><div class="picker-cat">${ETIQUETAS_CAT[r.cat]}</div></div>
+        </div>`;
     }).join('');
   }
-  window.renderPicker = renderPicker;
+  window.renderizarSelectorRecetas = renderizarSelectorRecetas;
 
-  window.selectPicker = id => {
-    selPickId=id;
-    document.querySelectorAll('.picker-item').forEach(el=>el.classList.remove('selected'));
-    const el=document.getElementById('pi-'+id); if(el) el.classList.add('selected');
+  // Selecciona una receta en el planning
+  window.seleccionarRecetaPlanning = id => {
+    idRecetaPlanning = id;
+    document.querySelectorAll('.picker-item').forEach(el => el.classList.remove('selected'));
+    const el = document.getElementById('opcion-' + id); if (el) el.classList.add('selected');
   };
 
-  window.confirmPlan = async () => {
-    if(!selPickId){alert('Selecciona una receta');return;}
-    const r=recipes.find(x=>x.id===selPickId); if(!r) return;
-    const key=planKey(planYr,planMon,planDay);
-    const updated={...planning};
-    if(!updated[key]) updated[key]=[];
-    updated[key]=[...updated[key],{recipeId:r.id,name:r.name,cat:document.getElementById('plan-meal-type').value}];
-    await setDoc(doc(db,'planning','data'),updated);
-    closeModal('modal-plan');
+  // Confirma y guarda la entrada en el planning
+  window.confirmarPlanning = async () => {
+    if (!idRecetaPlanning) { alert('Selecciona una receta'); return; }
+    const r = recetas.find(x => x.id === idRecetaPlanning); if (!r) return;
+    const clave    = claveDelDia(anioPlanning, mesPlanning, diaPlanning);
+    const actualizado = { ...planning };
+    if (!actualizado[clave]) actualizado[clave] = [];
+    actualizado[clave] = [...actualizado[clave], {
+      idReceta: r.id,
+      nombre:   r.nombre,
+      cat:      document.getElementById('tipo-comida-planning').value
+    }];
+    await setDoc(doc(db, 'planning', 'datos'), actualizado);
+    cerrarModal('modal-planning');
   };
 
-  window.removePlan = async (key,index,e) => {
+  // Elimina una entrada del planning
+  window.eliminarEntradaPlanning = async (clave, indice, e) => {
     e.stopPropagation();
-    const updated={...planning};
-    if(!updated[key]) return;
-    updated[key]=updated[key].filter((_,i)=>i!==index);
-    if(!updated[key].length) delete updated[key];
-    await setDoc(doc(db,'planning','data'),updated);
+    const actualizado = { ...planning };
+    if (!actualizado[clave]) return;
+    actualizado[clave] = actualizado[clave].filter((_, i) => i !== indice);
+    if (!actualizado[clave].length) delete actualizado[clave];
+    await setDoc(doc(db, 'planning', 'datos'), actualizado);
   };
 
-  window.openModal  = id => document.getElementById(id).classList.add('open');
-  window.closeModal = id => document.getElementById(id).classList.remove('open');
+  // ── HELPERS ───────────────────────────────────────────────────────
+  window.abrirModal  = id => document.getElementById(id).classList.add('open');
+  window.cerrarModal = id => document.getElementById(id).classList.remove('open');
 </script>
 </body>
 </html>
