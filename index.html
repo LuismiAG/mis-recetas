@@ -4,15 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mis Recetas</title>
-
-  <!-- ── PWA: METADATOS PARA INSTALACIÓN COMO APP ── -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#1a1916">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Mis Recetas">
-  <link rel="apple-touch-icon" href="icon-192.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
@@ -44,16 +35,6 @@
     .login-btn { width: 100%; padding: 10px; border-radius: var(--radius); background: var(--accent); color: #fff; border: none; font-family: 'DM Sans', sans-serif; font-size: 15px; font-weight: 500; cursor: pointer; margin-top: 4px; }
     .login-btn:hover { opacity: 0.82; }
     .login-error { font-size: 13px; color: #a33030; margin-top: 10px; min-height: 18px; }
-
-    /* ── BANNER DE INSTALACIÓN PWA ── */
-    .install-banner { display: none; position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%); background: var(--text); color: #fff; border-radius: var(--radius-lg); padding: 12px 20px; font-size: 14px; z-index: 300; align-items: center; gap: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); max-width: 340px; width: calc(100% - 2rem); }
-    .install-banner.visible { display: flex; }
-    .install-banner-text { flex: 1; line-height: 1.4; }
-    .install-banner-text strong { display: block; margin-bottom: 2px; }
-    .install-banner-text span { font-size: 12px; opacity: 0.7; }
-    .btn-instalar { padding: 7px 14px; border-radius: var(--radius); background: #fff; color: var(--text); border: none; font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; cursor: pointer; white-space: nowrap; }
-    .btn-cerrar-banner { background: none; border: none; color: #fff; font-size: 18px; cursor: pointer; opacity: 0.6; padding: 0 2px; }
-    .btn-cerrar-banner:hover { opacity: 1; }
 
     /* ── BARRA SUPERIOR ── */
     .topbar { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 1.5rem; display: flex; align-items: center; justify-content: space-between; height: 56px; position: sticky; top: 0; z-index: 50; }
@@ -170,6 +151,7 @@
     .detail-sec { margin-bottom: 1rem; }
     .detail-sec h3 { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.07em; color: var(--text-muted); margin-bottom: 5px; }
     .detail-sec p { font-size: 14px; color: var(--text); line-height: 1.65; white-space: pre-wrap; }
+
     .modal-ft { display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem; padding-top: 1.25rem; border-top: 1px solid var(--border); }
     .btn-cancel { padding: 9px 18px; border-radius: var(--radius); border: 1px solid var(--border); background: transparent; color: var(--text-muted); font-family: 'DM Sans', sans-serif; font-size: 14px; cursor: pointer; }
     .btn-cancel:hover { border-color: var(--border-strong); color: var(--text); }
@@ -243,6 +225,7 @@
   </div>
 
   <main class="main">
+
     <!-- Vista recetas -->
     <div class="view active" id="vista-recetas">
       <div class="toolbar">
@@ -282,17 +265,8 @@
       </div>
       <div class="cal-grid" id="cuadricula-calendario"></div>
     </div>
-  </main>
-</div>
 
-<!-- ── BANNER DE INSTALACIÓN COMO APP ── -->
-<div class="install-banner" id="banner-instalacion">
-  <div class="install-banner-text">
-    <strong>Instalar como app</strong>
-    <span>Accede desde tu pantalla de inicio</span>
-  </div>
-  <button class="btn-instalar" onclick="instalarApp()">Instalar</button>
-  <button class="btn-cerrar-banner" onclick="cerrarBannerInstalacion()">✕</button>
+  </main>
 </div>
 
 <!-- ── MODAL: AÑADIR RECETA ── -->
@@ -392,8 +366,8 @@
 
 <!-- ── FIREBASE SDK ── -->
 <script type="module">
-  import { initializeApp }                                                     from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged }  from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
+  import { initializeApp }                                        from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-auth.js";
   import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
 
   // ── CONFIGURACIÓN DE FIREBASE ──────────────────────────────────────
@@ -417,46 +391,19 @@
   let categoriaActual  = 'todas';
   let fotoPortada      = null;
   let fotosAdicionales = [];
-  let idRecetaSeleccionada = null;
-  let idRecetaPlanning     = null;
-  let fotosDetalle         = [];
-  let indiceActivoDetalle  = 0;
+  let idRecetaSeleccionada    = null;
+  let idRecetaPlanning        = null;
+  let fotosDetalle            = [];
+  let indiceActivoDetalle     = 0;
   let diaPlanning = null, mesPlanning = null, anioPlanning = null;
   let mesCalendario  = new Date().getMonth();
   let anioCalendario = new Date().getFullYear();
-  let eventoPWA      = null; // Guarda el evento de instalación PWA
 
   // ── CONSTANTES ─────────────────────────────────────────────────────
   const ETIQUETAS_CAT = { desayuno:'Desayuno / Merienda', comida:'Comida', cena:'Cena' };
   const EMOJIS        = { desayuno:'☀️', comida:'🍽️', cena:'🌙' };
   const MESES         = ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
   const DIAS_SEMANA   = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-
-  // ── PWA: CAPTURA EL EVENTO DE INSTALACIÓN ─────────────────────────
-  window.addEventListener('beforeinstallprompt', e => {
-    e.preventDefault();
-    eventoPWA = e;
-    document.getElementById('banner-instalacion').classList.add('visible');
-  });
-
-  // La app ya fue instalada, oculta el banner
-  window.addEventListener('appinstalled', () => {
-    document.getElementById('banner-instalacion').classList.remove('visible');
-    eventoPWA = null;
-  });
-
-  // Lanza el diálogo de instalación nativo del navegador
-  window.instalarApp = async () => {
-    if (!eventoPWA) return;
-    eventoPWA.prompt();
-    const { outcome } = await eventoPWA.userChoice;
-    if (outcome === 'accepted') eventoPWA = null;
-    document.getElementById('banner-instalacion').classList.remove('visible');
-  };
-
-  window.cerrarBannerInstalacion = () => {
-    document.getElementById('banner-instalacion').classList.remove('visible');
-  };
 
   // ── AUTENTICACIÓN ──────────────────────────────────────────────────
 
@@ -465,7 +412,8 @@
     if (usuario) {
       document.getElementById('pantalla-login').style.display = 'none';
       document.getElementById('pantalla-app').style.display   = 'block';
-      document.getElementById('usuario-nombre').textContent   = usuario.email.split('@')[0];
+      // Muestra el nombre de usuario (parte antes del @)
+      document.getElementById('usuario-nombre').textContent = usuario.email.split('@')[0];
       iniciarEscuchas();
     } else {
       document.getElementById('pantalla-login').style.display = 'flex';
@@ -473,7 +421,7 @@
     }
   });
 
-  // Inicia sesión con email y contraseña de Firebase
+  // Inicia sesión con email y contraseña
   window.iniciarSesion = async () => {
     const email = document.getElementById('login-email').value.trim();
     const pwd   = document.getElementById('login-pwd').value;
@@ -491,7 +439,7 @@
 
   // ── ESCUCHAS EN TIEMPO REAL DE FIRESTORE ───────────────────────────
   function iniciarEscuchas() {
-    // Escucha cambios en la colección de recetas en tiempo real
+    // Escucha cambios en la colección de recetas
     onSnapshot(collection(db, 'recetas'), snap => {
       recetas = snap.docs.map(d => ({ id: d.id, ...d.data() }));
       recetas.sort((a, b) => (b.creadoEn || 0) - (a.creadoEn || 0));
@@ -500,7 +448,7 @@
       renderizarSelectorRecetas();
     });
 
-    // Escucha cambios en el documento del planning en tiempo real
+    // Escucha cambios en el documento de planning
     onSnapshot(doc(db, 'planning', 'datos'), snap => {
       planning = snap.exists() ? (snap.data() || {}) : {};
       renderizarCalendario();
@@ -541,7 +489,7 @@
     sinRecetas.style.display = 'none';
     const todasLasFotos = r => [r.foto, ...(r.fotos || [])].filter(Boolean);
     cuadricula.innerHTML = lista.map(r => {
-      const fotos   = todasLasFotos(r);
+      const fotos  = todasLasFotos(r);
       const portada = fotos[0];
       return `
         <div class="card" onclick="abrirDetalle('${r.id}')">
@@ -610,7 +558,7 @@
 
   // Actualiza las miniaturas de fotos adicionales en el formulario
   function renderizarMiniaturasFotosAdicionales() {
-    const fila  = document.getElementById('fila-fotos-adicionales');
+    const fila = document.getElementById('fila-fotos-adicionales');
     const boton = document.getElementById('btn-mas-fotos');
     fila.querySelectorAll('.add-photo-thumb').forEach(el => el.remove());
     fotosAdicionales.forEach((src, i) => {
@@ -714,21 +662,28 @@
 
   function renderizarCalendario() {
     document.getElementById('titulo-mes').textContent = `${MESES[mesCalendario]} ${anioCalendario}`;
-    const cuadricula = document.getElementById('cuadricula-calendario');
+    const cuadricula  = document.getElementById('cuadricula-calendario');
     cuadricula.innerHTML = '';
+
+    // Cabeceras de días de la semana
     DIAS_SEMANA.forEach(d => {
       const el = document.createElement('div'); el.className = 'cal-dayname'; el.textContent = d; cuadricula.appendChild(el);
     });
-    const primerDia      = new Date(anioCalendario, mesCalendario, 1).getDay();
+
+    const primerDia   = new Date(anioCalendario, mesCalendario, 1).getDay();
     const desplazamiento = primerDia === 0 ? 6 : primerDia - 1;
-    const diasDelMes     = new Date(anioCalendario, mesCalendario + 1, 0).getDate();
-    const hoy            = new Date();
+    const diasDelMes  = new Date(anioCalendario, mesCalendario + 1, 0).getDate();
+    const hoy         = new Date();
+
+    // Celdas vacías al inicio del mes
     for (let i = 0; i < desplazamiento; i++) {
       const c = document.createElement('div'); c.className = 'cal-cell empty-cell'; cuadricula.appendChild(c);
     }
+
+    // Celdas de días
     for (let d = 1; d <= diasDelMes; d++) {
-      const celda  = document.createElement('div'); celda.className = 'cal-cell';
-      const esHoy  = hoy.getFullYear() === anioCalendario && hoy.getMonth() === mesCalendario && hoy.getDate() === d;
+      const celda = document.createElement('div'); celda.className = 'cal-cell';
+      const esHoy = hoy.getFullYear() === anioCalendario && hoy.getMonth() === mesCalendario && hoy.getDate() === d;
       if (esHoy) celda.classList.add('today');
       const clave    = claveDelDia(anioCalendario, mesCalendario, d);
       const entradas = planning[clave] || [];
@@ -754,9 +709,9 @@
 
   // Renderiza el listado de recetas en el selector del planning
   function renderizarSelectorRecetas() {
-    const q     = (document.getElementById('buscador-planning')?.value || '').toLowerCase();
-    const lista = recetas.filter(r => !q || r.nombre.toLowerCase().includes(q));
-    const el    = document.getElementById('selector-recetas'); if (!el) return;
+    const q      = (document.getElementById('buscador-planning')?.value || '').toLowerCase();
+    const lista  = recetas.filter(r => !q || r.nombre.toLowerCase().includes(q));
+    const el     = document.getElementById('selector-recetas'); if (!el) return;
     if (!lista.length) {
       el.innerHTML = `<div style="color:var(--text-muted);font-size:13px;padding:8px">${recetas.length ? 'Sin resultados' : 'Aún no tienes recetas'}</div>`;
       return;
@@ -784,7 +739,7 @@
   window.confirmarPlanning = async () => {
     if (!idRecetaPlanning) { alert('Selecciona una receta'); return; }
     const r = recetas.find(x => x.id === idRecetaPlanning); if (!r) return;
-    const clave       = claveDelDia(anioPlanning, mesPlanning, diaPlanning);
+    const clave    = claveDelDia(anioPlanning, mesPlanning, diaPlanning);
     const actualizado = { ...planning };
     if (!actualizado[clave]) actualizado[clave] = [];
     actualizado[clave] = [...actualizado[clave], {
@@ -809,17 +764,6 @@
   // ── HELPERS ───────────────────────────────────────────────────────
   window.abrirModal  = id => document.getElementById(id).classList.add('open');
   window.cerrarModal = id => document.getElementById(id).classList.remove('open');
-</script>
-
-<!-- ── REGISTRO DEL SERVICE WORKER (necesario para la PWA) ── -->
-<script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/mis-recetas/sw.js')
-        .then(() => console.log('Service Worker registrado correctamente'))
-        .catch(err => console.log('Error al registrar Service Worker:', err));
-    });
-  }
 </script>
 </body>
 </html>
