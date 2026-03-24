@@ -1,0 +1,1315 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mis Recetas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --bg: #faf9f7;
+      --surface: #ffffff;
+      --border: #e8e4de;
+      --border-strong: #ccc8c0;
+      --text: #1a1916;
+      --text-muted: #7a7670;
+      --text-hint: #b0aca4;
+      --accent: #1a1916;
+      --badge-desayuno-bg: #fdf3e3;
+      --badge-desayuno-fg: #92580a;
+      --badge-comida-bg: #e6f4ee;
+      --badge-comida-fg: #1a6644;
+      --badge-cena-bg: #eeecf9;
+      --badge-cena-fg: #4a3fb0;
+      --plan-desayuno-bg: #fdf3e3;
+      --plan-desayuno-fg: #92580a;
+      --plan-comida-bg: #e6f4ee;
+      --plan-comida-fg: #1a6644;
+      --plan-cena-bg: #eeecf9;
+      --plan-cena-fg: #4a3fb0;
+      --radius: 10px;
+      --radius-lg: 14px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* LOGIN */
+    .login-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .login-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 360px;
+      text-align: center;
+    }
+
+    .login-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 28px;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .login-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      text-align: center;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+
+    .login-box input:focus {
+      outline: none;
+      border-color: var(--border-strong);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .login-btn:hover {
+      opacity: 0.82;
+    }
+
+    .login-error {
+      font-size: 13px;
+      color: #a33030;
+      margin-top: 10px;
+      min-height: 18px;
+    }
+
+    /* TOP BAR */
+    .topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .topbar-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--text);
+    }
+
+    .topbar-right {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .topbar-nav {
+      display: flex;
+      gap: 4px;
+    }
+
+    .topbar-nav button {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .topbar-nav button.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+
+    .topbar-nav button:hover:not(.active) {
+      background: var(--bg);
+      color: var(--text);
+      border-color: var(--border);
+    }
+
+    .btn-logout {
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: transparent;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .btn-logout:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    /* MAIN */
+    .main {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem;
+    }
+
+    .view {
+      display: none;
+    }
+
+    .view.active {
+      display: block;
+    }
+
+    /* TOOLBAR */
+    .toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .toolbar-left {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-wrap {
+      position: relative;
+    }
+
+    .search-wrap input {
+      padding: 8px 14px 8px 36px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text);
+      width: 220px;
+    }
+
+    .search-wrap input:focus {
+      outline: none;
+      border-color: var(--border-strong);
+    }
+
+    .search-wrap input::placeholder {
+      color: var(--text-hint);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-hint);
+      font-size: 15px;
+      pointer-events: none;
+    }
+
+    .cat-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cat-tab {
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all 0.12s;
+    }
+
+    .cat-tab.active {
+      background: var(--surface);
+      color: var(--text);
+      border-color: var(--border-strong);
+      font-weight: 500;
+    }
+
+    .cat-tab:hover:not(.active) {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    .btn-add {
+      padding: 8px 18px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn-add:hover {
+      opacity: 0.82;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: box-shadow 0.15s, border-color 0.15s, transform 0.15s;
+    }
+
+    .card:hover {
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+      border-color: var(--border-strong);
+      transform: translateY(-2px);
+    }
+
+    .card-thumb {
+      width: 100%;
+      height: 150px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      overflow: hidden;
+    }
+
+    .card-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .card-body {
+      padding: 12px 14px 14px;
+    }
+
+    .card-name {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+
+    .card-ing {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 500;
+    }
+
+    .badge-desayuno {
+      background: var(--badge-desayuno-bg);
+      color: var(--badge-desayuno-fg);
+    }
+
+    .badge-comida {
+      background: var(--badge-comida-bg);
+      color: var(--badge-comida-fg);
+    }
+
+    .badge-cena {
+      background: var(--badge-cena-bg);
+      color: var(--badge-cena-fg);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .empty-state .icon {
+      font-size: 44px;
+      margin-bottom: 1rem;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* CALENDAR */
+    .cal-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 1.25rem;
+    }
+
+    .cal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px;
+      color: var(--text);
+      min-width: 210px;
+    }
+
+    .cal-nav {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.12s;
+    }
+
+    .cal-nav:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    .cal-legend {
+      display: flex;
+      gap: 10px;
+      margin-left: auto;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+    }
+
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--border);
+      gap: 1px;
+    }
+
+    .cal-dayname {
+      background: var(--bg);
+      text-align: center;
+      padding: 9px 4px;
+      font-size: 12px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0.03em;
+    }
+
+    .cal-cell {
+      background: var(--surface);
+      min-height: 110px;
+      padding: 6px 5px 5px;
+      position: relative;
+    }
+
+    .cal-cell.empty-cell {
+      background: var(--bg);
+      opacity: 0.7;
+    }
+
+    .day-num {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .cal-cell.today .day-num {
+      background: var(--accent);
+      color: #fff;
+      font-weight: 500;
+    }
+
+    .cal-add-btn {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-size: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.12s;
+    }
+
+    .cal-cell:hover .cal-add-btn {
+      opacity: 1;
+    }
+
+    .cal-add-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .plan-item {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      padding: 3px 6px;
+      border-radius: 5px;
+      margin-bottom: 3px;
+      font-size: 10px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .plan-name {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .plan-del {
+      display: none;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 0 1px;
+      color: inherit;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    .plan-item:hover .plan-del {
+      display: block;
+    }
+
+    .plan-desayuno {
+      background: var(--plan-desayuno-bg);
+      color: var(--plan-desayuno-fg);
+    }
+
+    .plan-comida {
+      background: var(--plan-comida-bg);
+      color: var(--plan-comida-fg);
+    }
+
+    .plan-cena {
+      background: var(--plan-cena-bg);
+      color: var(--plan-cena-fg);
+    }
+
+    /* MODALS */
+    .overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 14, 12, 0.45);
+      z-index: 200;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .overlay.open {
+      display: flex;
+    }
+
+    .modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      width: 100%;
+      max-width: 480px;
+      max-height: 92vh;
+      overflow-y: auto;
+      box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12);
+    }
+
+    .modal-hd {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px;
+      color: var(--text);
+      line-height: 1.2;
+    }
+
+    .btn-close {
+      background: none;
+      border: none;
+      font-size: 20px;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 0 2px;
+    }
+
+    .btn-close:hover {
+      color: var(--text);
+    }
+
+    .field {
+      margin-bottom: 1.1rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .field input,
+    .field select,
+    .field textarea {
+      width: 100%;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+    }
+
+    .field input:focus,
+    .field select:focus,
+    .field textarea:focus {
+      outline: none;
+      border-color: var(--border-strong);
+    }
+
+    .field textarea {
+      resize: vertical;
+      min-height: 80px;
+      line-height: 1.5;
+    }
+
+    .img-upload {
+      width: 100%;
+      height: 155px;
+      border: 1.5px dashed var(--border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text-hint);
+      font-size: 13px;
+      position: relative;
+    }
+
+    .img-upload:hover {
+      border-color: var(--border-strong);
+    }
+
+    .img-upload img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .img-upload input {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .upload-hint {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+
+    .upload-hint .u-icon {
+      font-size: 28px;
+    }
+
+    .modal-ft {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-cancel {
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-cancel:hover {
+      border-color: var(--border-strong);
+      color: var(--text);
+    }
+
+    .btn-save {
+      padding: 9px 22px;
+      border-radius: var(--radius);
+      border: none;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+
+    .btn-save:hover {
+      opacity: 0.82;
+    }
+
+    .btn-danger {
+      padding: 9px 18px;
+      border-radius: var(--radius);
+      border: 1px solid #f0a0a0;
+      background: transparent;
+      color: #a33030;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .btn-danger:hover {
+      background: #fdf0f0;
+    }
+
+    .detail-img {
+      width: 100%;
+      height: 210px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      margin-bottom: 1.25rem;
+    }
+
+    .detail-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .detail-sec {
+      margin-bottom: 1rem;
+    }
+
+    .detail-sec h3 {
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .detail-sec p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      white-space: pre-wrap;
+    }
+
+    .picker-scroll {
+      max-height: 300px;
+      overflow-y: auto;
+      margin-top: 8px;
+    }
+
+    .picker-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 9px 10px;
+      border-radius: var(--radius);
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.12s;
+      margin-bottom: 5px;
+    }
+
+    .picker-item:hover {
+      background: var(--bg);
+      border-color: var(--border);
+    }
+
+    .picker-item.selected {
+      background: var(--bg);
+      border-color: var(--border-strong);
+    }
+
+    .picker-thumb {
+      width: 42px;
+      height: 42px;
+      border-radius: 8px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .picker-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .picker-name {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .picker-cat {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        padding: 0 1rem;
+      }
+
+      .main {
+        padding: 1.25rem 0.75rem;
+      }
+
+      .search-wrap input {
+        width: 160px;
+      }
+
+      .cal-legend {
+        display: none;
+      }
+
+      .cal-cell {
+        min-height: 80px;
+      }
+
+      .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn-add {
+        text-align: center;
+      }
+
+      .modal {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- LOGIN -->
+  <div id="login-screen" class="login-wrap">
+    <div class="login-box">
+      <div class="login-logo">mis recetas</div>
+      <div class="login-sub">Introduce la contraseña para acceder</div>
+      <input type="password" id="pwd-input" placeholder="Contraseña" onkeydown="if(event.key==='Enter')checkPwd()">
+      <button class="login-btn" onclick="checkPwd()">Entrar</button>
+      <div class="login-error" id="login-error"></div>
+    </div>
+  </div>
+
+  <!-- APP -->
+  <div id="app-screen" style="display:none">
+    <div class="topbar">
+      <span class="topbar-logo">mis recetas</span>
+      <div class="topbar-right">
+        <nav class="topbar-nav">
+          <button class="active" onclick="showView('recipes')">Recetas</button>
+          <button onclick="showView('planner')">Planning</button>
+        </nav>
+        <button class="btn-logout" onclick="logout()">Salir</button>
+      </div>
+    </div>
+    <main class="main">
+      <div class="view active" id="view-recipes">
+        <div class="toolbar">
+          <div class="toolbar-left">
+            <div class="search-wrap">
+              <span class="search-icon">⌕</span>
+              <input type="text" id="search-input" placeholder="Buscar receta..." oninput="renderRecipes()">
+            </div>
+            <div class="cat-tabs">
+              <button class="cat-tab active" onclick="setCat('todas')">Todas</button>
+              <button class="cat-tab" onclick="setCat('desayuno')">Desayunos</button>
+              <button class="cat-tab" onclick="setCat('comida')">Comidas</button>
+              <button class="cat-tab" onclick="setCat('cena')">Cenas</button>
+            </div>
+          </div>
+          <button class="btn-add" onclick="openAddModal()">+ Añadir receta</button>
+        </div>
+        <div class="grid" id="recipe-grid"></div>
+        <div class="loading" id="recipes-loading">Cargando recetas...</div>
+        <div class="empty-state" id="recipes-empty" style="display:none">
+          <div class="icon">🍽</div>
+          <p>Aún no hay recetas aquí.<br>¡Añade la primera!</p>
+        </div>
+      </div>
+      <div class="view" id="view-planner">
+        <div class="cal-header">
+          <button class="cal-nav" onclick="changeMonth(-1)">‹</button>
+          <div class="cal-title" id="cal-title"></div>
+          <button class="cal-nav" onclick="changeMonth(1)">›</button>
+          <div class="cal-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--plan-desayuno-fg)"></div>Desayuno
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--plan-comida-fg)"></div>Comida
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--plan-cena-fg)"></div>Cena
+            </div>
+          </div>
+        </div>
+        <div class="cal-grid" id="cal-grid"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- ADD RECIPE MODAL -->
+  <div class="overlay" id="modal-add">
+    <div class="modal">
+      <div class="modal-hd"><span class="modal-title">Nueva receta</span><button class="btn-close"
+          onclick="closeModal('modal-add')">✕</button></div>
+      <div class="field">
+        <label>Imagen</label>
+        <div class="img-upload" id="img-upload-box">
+          <div class="upload-hint" id="img-placeholder"><span class="u-icon">📷</span><span>Sube una captura de
+              pantalla</span></div>
+          <input type="file" accept="image/*" onchange="handleImg(event)" id="img-file">
+        </div>
+      </div>
+      <div class="field"><label>Nombre de la receta</label><input type="text" id="in-name"
+          placeholder="Ej: Tortilla española"></div>
+      <div class="field"><label>Categoría</label><select id="in-cat">
+          <option value="desayuno">Desayuno / Merienda</option>
+          <option value="comida" selected>Comida</option>
+          <option value="cena">Cena</option>
+        </select></div>
+      <div class="field"><label>Ingredientes</label><textarea id="in-ing"
+          placeholder="Ej: 3 patatas, 4 huevos, aceite de oliva..."></textarea></div>
+      <div class="field"><label>Notas / Preparación</label><textarea id="in-notes"
+          placeholder="Pasos, tiempos, trucos..."></textarea></div>
+      <div class="modal-ft"><button class="btn-cancel" onclick="closeModal('modal-add')">Cancelar</button><button
+          class="btn-save" onclick="saveRecipe()">Guardar receta</button></div>
+    </div>
+  </div>
+
+  <!-- RECIPE DETAIL MODAL -->
+  <div class="overlay" id="modal-detail">
+    <div class="modal">
+      <div class="modal-hd"><span class="modal-title" id="det-title"></span><button class="btn-close"
+          onclick="closeModal('modal-detail')">✕</button></div>
+      <div class="detail-img" id="det-img"></div>
+      <div class="detail-sec">
+        <h3>Categoría</h3>
+        <p id="det-cat"></p>
+      </div>
+      <div class="detail-sec" id="det-ing-sec">
+        <h3>Ingredientes</h3>
+        <p id="det-ing"></p>
+      </div>
+      <div class="detail-sec" id="det-notes-sec">
+        <h3>Notas / Preparación</h3>
+        <p id="det-notes"></p>
+      </div>
+      <div class="modal-ft"><button class="btn-danger" onclick="deleteRecipe()">Eliminar</button><button
+          class="btn-cancel" onclick="closeModal('modal-detail')">Cerrar</button></div>
+    </div>
+  </div>
+
+  <!-- PLAN PICKER MODAL -->
+  <div class="overlay" id="modal-plan">
+    <div class="modal">
+      <div class="modal-hd"><span class="modal-title" id="plan-title">Añadir al planning</span><button class="btn-close"
+          onclick="closeModal('modal-plan')">✕</button></div>
+      <div class="field"><label>Tipo de comida</label><select id="plan-meal-type">
+          <option value="desayuno">Desayuno / Merienda</option>
+          <option value="comida" selected>Comida</option>
+          <option value="cena">Cena</option>
+        </select></div>
+      <div class="field">
+        <label>Receta</label>
+        <input type="text" id="plan-search" placeholder="Buscar receta..." oninput="renderPicker()"
+          style="margin-bottom:8px">
+        <div class="picker-scroll" id="recipe-picker"></div>
+      </div>
+      <div class="modal-ft"><button class="btn-cancel" onclick="closeModal('modal-plan')">Cancelar</button><button
+          class="btn-save" onclick="confirmPlan()">Añadir</button></div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-app.js";
+    import { getFirestore, collection, doc, addDoc, deleteDoc, onSnapshot, setDoc } from "https://www.gstatic.com/firebasejs/11.6.0/firebase-firestore.js";
+
+    // ── CONFIGURACIÓN FIREBASE ──────────────────────────────────────────
+    const firebaseConfig = {
+      apiKey: "AIzaSyAQRov1kfm8xItOho8tOhErTi9szv0UalY",
+      authDomain: "mis-recetas-6467c.firebaseapp.com",
+      projectId: "mis-recetas-6467c",
+      storageBucket: "mis-recetas-6467c.firebasestorage.app",
+      messagingSenderId: "21913203261",
+      appId: "1:21913203261:web:0e757f121f533e4b0eb054"
+    };
+
+    // ── CONTRASEÑA COMPARTIDA ── Cámbiala por la que queráis ────────────
+    const APP_PASSWORD = "lazaramanda";
+    // ───────────────────────────────────────────────────────────────────
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    let recipes = [], planning = {}, curCat = 'todas';
+    let curImg = null, selId = null, selPickId = null;
+    let planDay = null, planMon = null, planYr = null;
+    let calMon = new Date().getMonth(), calYr = new Date().getFullYear();
+
+    const CAT_LABEL = { desayuno: 'Desayuno / Merienda', comida: 'Comida', cena: 'Cena' };
+    const EMO = { desayuno: '☀️', comida: '🍽️', cena: '🌙' };
+    const MONTHS = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+    const WDAYS = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+
+    // LOGIN
+    window.checkPwd = () => {
+      const val = document.getElementById('pwd-input').value;
+      if (val === APP_PASSWORD) {
+        sessionStorage.setItem('auth', '1');
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('app-screen').style.display = 'block';
+        startListeners();
+      } else {
+        document.getElementById('login-error').textContent = 'Contraseña incorrecta';
+        document.getElementById('pwd-input').value = '';
+      }
+    };
+    window.logout = () => { sessionStorage.removeItem('auth'); location.reload(); };
+
+    if (sessionStorage.getItem('auth') === '1') {
+      document.getElementById('login-screen').style.display = 'none';
+      document.getElementById('app-screen').style.display = 'block';
+      startListeners();
+    }
+
+    function startListeners() {
+      onSnapshot(collection(db, 'recipes'), snap => {
+        recipes = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        recipes.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+        document.getElementById('recipes-loading').style.display = 'none';
+        renderRecipes(); renderPicker();
+      });
+      onSnapshot(doc(db, 'planning', 'data'), snap => {
+        planning = snap.exists() ? (snap.data() || {}) : {};
+        renderCalendar();
+      });
+    }
+
+    window.showView = v => {
+      document.querySelectorAll('.view').forEach(el => el.classList.remove('active'));
+      document.getElementById('view-' + v).classList.add('active');
+      document.querySelectorAll('.topbar-nav button').forEach((b, i) =>
+        b.classList.toggle('active', ['recipes', 'planner'][i] === v));
+      if (v === 'planner') renderCalendar();
+    };
+
+    window.setCat = c => {
+      curCat = c;
+      document.querySelectorAll('.cat-tab').forEach((t, i) =>
+        t.classList.toggle('active', ['todas', 'desayuno', 'comida', 'cena'][i] === c));
+      renderRecipes();
+    };
+
+    function getFiltered() {
+      const q = (document.getElementById('search-input').value || '').toLowerCase();
+      return recipes.filter(r =>
+        (curCat === 'todas' || r.cat === curCat) &&
+        (!q || r.name.toLowerCase().includes(q) || (r.ing || '').toLowerCase().includes(q)));
+    }
+
+    function renderRecipes() {
+      const grid = document.getElementById('recipe-grid'), empty = document.getElementById('recipes-empty');
+      const list = getFiltered();
+      if (!list.length) { grid.innerHTML = ''; empty.style.display = 'block'; return; }
+      empty.style.display = 'none';
+      grid.innerHTML = list.map(r => `
+      <div class="card" onclick="openDetail('${r.id}')">
+        <div class="card-thumb">${r.img ? `<img src="${r.img}" alt="">` : `<span>${EMO[r.cat]}</span>`}</div>
+        <div class="card-body">
+          <div class="card-name">${r.name}</div>
+          ${r.ing ? `<div class="card-ing">${r.ing.slice(0, 60)}${r.ing.length > 60 ? '…' : ''}</div>` : ''}
+          <span class="badge badge-${r.cat}">${CAT_LABEL[r.cat]}</span>
+        </div>
+      </div>`).join('');
+    }
+    window.renderRecipes = renderRecipes;
+
+    window.openAddModal = () => {
+      curImg = null;
+      ['img-file', 'in-name', 'in-ing', 'in-notes'].forEach(id => document.getElementById(id).value = '');
+      document.getElementById('in-cat').value = 'comida';
+      const box = document.getElementById('img-upload-box');
+      const ei = box.querySelector('img'); if (ei) ei.remove();
+      document.getElementById('img-placeholder').style.display = '';
+      openModal('modal-add');
+    };
+
+    window.handleImg = e => {
+      const file = e.target.files[0]; if (!file) return;
+      const fr = new FileReader();
+      fr.onload = ev => {
+        curImg = ev.target.result;
+        const box = document.getElementById('img-upload-box');
+        let img = box.querySelector('img');
+        if (!img) { img = document.createElement('img'); box.appendChild(img); }
+        img.src = curImg;
+        document.getElementById('img-placeholder').style.display = 'none';
+      };
+      fr.readAsDataURL(file);
+    };
+
+    window.saveRecipe = async () => {
+      const name = document.getElementById('in-name').value.trim();
+      if (!name) { document.getElementById('in-name').focus(); return; }
+      await addDoc(collection(db, 'recipes'), {
+        name, cat: document.getElementById('in-cat').value,
+        ing: document.getElementById('in-ing').value.trim(),
+        notes: document.getElementById('in-notes').value.trim(),
+        img: curImg || null, createdAt: Date.now()
+      });
+      closeModal('modal-add');
+    };
+
+    window.openDetail = id => {
+      const r = recipes.find(x => x.id === id); if (!r) return;
+      selId = id;
+      document.getElementById('det-title').textContent = r.name;
+      document.getElementById('det-img').innerHTML = r.img ? `<img src="${r.img}" alt="">` : `<span>${EMO[r.cat]}</span>`;
+      document.getElementById('det-cat').textContent = CAT_LABEL[r.cat];
+      const is = document.getElementById('det-ing-sec'); is.style.display = r.ing ? '' : 'none';
+      document.getElementById('det-ing').textContent = r.ing || '';
+      const ns = document.getElementById('det-notes-sec'); ns.style.display = r.notes ? '' : 'none';
+      document.getElementById('det-notes').textContent = r.notes || '';
+      openModal('modal-detail');
+    };
+
+    window.deleteRecipe = async () => {
+      if (!selId || !confirm('¿Eliminar esta receta?')) return;
+      await deleteDoc(doc(db, 'recipes', selId));
+      closeModal('modal-detail');
+    };
+
+    function planKey(y, m, d) { return `${y}-${String(m + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`; }
+
+    window.changeMonth = delta => {
+      calMon += delta;
+      if (calMon > 11) { calMon = 0; calYr++; } else if (calMon < 0) { calMon = 11; calYr--; }
+      renderCalendar();
+    };
+
+    function renderCalendar() {
+      document.getElementById('cal-title').textContent = `${MONTHS[calMon]} ${calYr}`;
+      const grid = document.getElementById('cal-grid'); grid.innerHTML = '';
+      WDAYS.forEach(d => { const el = document.createElement('div'); el.className = 'cal-dayname'; el.textContent = d; grid.appendChild(el); });
+      const firstDay = new Date(calYr, calMon, 1).getDay();
+      const offset = firstDay === 0 ? 6 : firstDay - 1;
+      const daysInMonth = new Date(calYr, calMon + 1, 0).getDate();
+      const today = new Date();
+      for (let i = 0; i < offset; i++) { const c = document.createElement('div'); c.className = 'cal-cell empty-cell'; grid.appendChild(c); }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement('div'); cell.className = 'cal-cell';
+        if (today.getFullYear() === calYr && today.getMonth() === calMon && today.getDate() === d) cell.classList.add('today');
+        const key = planKey(calYr, calMon, d);
+        const entries = planning[key] || [];
+        cell.innerHTML = `<span class="day-num">${d}</span><button class="cal-add-btn" onclick="openPlanModal(${d},${calMon},${calYr})">+</button>`;
+        entries.forEach((e, i) => {
+          const item = document.createElement('div'); item.className = `plan-item plan-${e.cat}`;
+          item.innerHTML = `<span class="plan-name">${e.name}</span><button class="plan-del" onclick="removePlan('${key}',${i},event)">✕</button>`;
+          cell.appendChild(item);
+        });
+        grid.appendChild(cell);
+      }
+    }
+
+    window.openPlanModal = (d, m, y) => {
+      planDay = d; planMon = m; planYr = y; selPickId = null;
+      document.getElementById('plan-title').textContent = `${d} de ${MONTHS[m]}`;
+      document.getElementById('plan-search').value = '';
+      document.getElementById('plan-meal-type').value = 'comida';
+      renderPicker(); openModal('modal-plan');
+    };
+
+    function renderPicker() {
+      const q = (document.getElementById('plan-search')?.value || '').toLowerCase();
+      const list = recipes.filter(r => !q || r.name.toLowerCase().includes(q));
+      const el = document.getElementById('recipe-picker'); if (!el) return;
+      if (!list.length) { el.innerHTML = `<div style="color:var(--text-muted);font-size:13px;padding:8px">${recipes.length ? 'Sin resultados' : 'Aún no tienes recetas'}</div>`; return; }
+      el.innerHTML = list.map(r => `
+      <div class="picker-item" id="pi-${r.id}" onclick="selectPicker('${r.id}')">
+        <div class="picker-thumb">${r.img ? `<img src="${r.img}" alt="">` : `<span>${EMO[r.cat]}</span>`}</div>
+        <div><div class="picker-name">${r.name}</div><div class="picker-cat">${CAT_LABEL[r.cat]}</div></div>
+      </div>`).join('');
+    }
+    window.renderPicker = renderPicker;
+
+    window.selectPicker = id => {
+      selPickId = id;
+      document.querySelectorAll('.picker-item').forEach(el => el.classList.remove('selected'));
+      const el = document.getElementById('pi-' + id); if (el) el.classList.add('selected');
+    };
+
+    window.confirmPlan = async () => {
+      if (!selPickId) { alert('Selecciona una receta'); return; }
+      const r = recipes.find(x => x.id === selPickId); if (!r) return;
+      const key = planKey(planYr, planMon, planDay);
+      const updated = { ...planning };
+      if (!updated[key]) updated[key] = [];
+      updated[key] = [...updated[key], { recipeId: r.id, name: r.name, cat: document.getElementById('plan-meal-type').value }];
+      await setDoc(doc(db, 'planning', 'data'), updated);
+      closeModal('modal-plan');
+    };
+
+    window.removePlan = async (key, index, e) => {
+      e.stopPropagation();
+      const updated = { ...planning };
+      if (!updated[key]) return;
+      updated[key] = updated[key].filter((_, i) => i !== index);
+      if (!updated[key].length) delete updated[key];
+      await setDoc(doc(db, 'planning', 'data'), updated);
+    };
+
+    window.openModal = id => document.getElementById(id).classList.add('open');
+    window.closeModal = id => document.getElementById(id).classList.remove('open');
+  </script>
+</body>
+
+</html>
